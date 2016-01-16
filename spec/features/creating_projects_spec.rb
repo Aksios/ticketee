@@ -12,5 +12,13 @@ feature 'Creating projects' do
     click_button 'Create Project'
 
     expect(page).to have_content('Project has bean created.')
+
+    project = Project.where(name: 'Atom100').first
+
+    expect(page.current_url).to eql(project_url(project))
+
+    title = 'Atom100 - Projects - Ticketee'
+
+    expect(page).to have_title(title)
   end
 end
