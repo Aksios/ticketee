@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :get_project, only: [:show, :update, :edit, :destroy]
+  before_action :set_project, only: [:show, :update, :edit, :destroy]
 
   def index
     @projects = Project.all
@@ -42,7 +42,10 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:name, :description)
     end
 
-    def get_project
+    def set_project
       @project = Project.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The project that you looking for does'n exist"
+      redirect_to projects_path
     end
 end
