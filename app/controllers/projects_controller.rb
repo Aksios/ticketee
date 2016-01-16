@@ -16,6 +16,9 @@ class ProjectsController < ApplicationController
     if @project.save
       flash[:notice] = 'Project has bean created.'
       redirect_to @project
+    else
+      flash[:alert] = 'Project has not bean created.'
+      render 'new'
     end
   end
 
