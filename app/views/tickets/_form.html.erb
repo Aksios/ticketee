@@ -1,0 +1,28 @@
+<% if @ticket.errors.any? %>
+  <div>
+    <%= pluralize(@ticket.errors.count, 'error') %>
+  </div>
+
+  <ul>
+    <% @ticket.errors.full_messages.each do |error| %>
+      <li>
+        <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@project, @ticket] do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
