@@ -16,9 +16,11 @@ feature 'Viewing Ticket' do
     expect(page).to have_content('USA ticket')
     expect(page).to_not have_content('Russia ticket')
 
-    #within ("#title h2") do
+    click_link 'USA ticket'
+
+    within ("#ticket h2") do
       expect(page).to have_content('USA ticket')
-    #end
+    end
 
     expect(page).to have_content('USA description')
   end
