@@ -1,7 +1,19 @@
 <% title(@project.name, 'Projects') %>
 
+<div id="ticket">
+
+</div>
 <%= @project.name %><br>
 <%= @project.description %>
+
+<ul>
+  <% @project.tickets.each do |ticket| %>
+    <li>
+      # <%= ticket.id %> -
+      <%= link_to ticket.title, [@project, ticket] %><br>
+    </li>
+  <% end %>
+</ul>
 
 <ul>
   <li>
